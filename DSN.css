@@ -1,0 +1,14 @@
+/***************DISPLAY SITE NUMBERS************/
+.DSN-wrapper {
+	max-width: 500px;
+	}
+
+.DSN-wrapper ul {
+    list-style: none;
+}
+.DSN-wrapper .count  {
+    float: right;
+}
+.DSN-wrapper .item {
+	font-weight: bold;
+}
