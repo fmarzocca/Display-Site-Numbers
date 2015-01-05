@@ -63,9 +63,24 @@ class display_site_numbers extends WP_Widget {
 		// Widget admin form
 		?>
 <p>
-<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
-<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> 
+<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 </p>
+<p>
+
+<label class="description" for="element_1">Select what to display: </label>
+		<span>
+			<ul><li><input checked="checked" id="element_1_1" name="element_1_1" class="element checkbox" type="checkbox" value="1" />
+<label class="choice" for="element_1_1">Posts count</label></li>
+<li><input checked="checked id="element_1_2" name="element_1_2" class="element checkbox" type="checkbox" value="1" />
+<label class="choice" for="element_1_2">Categories count</label></li>
+<li><input checked="checked id="element_1_3" name="element_1_3" class="element checkbox" type="checkbox" value="1" />
+<label class="choice" for="element_1_3">Authors count</label></li>
+<li><input checked="checked id="element_1_4" name="element_1_4" class="element checkbox" type="checkbox" value="1" />
+<label class="choice" for="element_1_4">Tags count</label></li>
+<li><input checked="checked id="element_1_5" name="element_1_5" class="element checkbox" type="checkbox" value="1" />
+<label class="choice" for="element_1_5">Comments count</label></li></span>
+</li></ul></p>
 <?php 
 	}
 	
