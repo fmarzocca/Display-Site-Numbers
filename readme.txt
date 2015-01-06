@@ -3,7 +3,7 @@
 
 
 Contributors: fmarzocca
-Donate link: TBD
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=58XFDXEP4336Y
 Tags: widget, count posts, count categories, counters
 Requires at least: 4.0.1
 Tested up to: 4.1
@@ -26,7 +26,7 @@ The widget will show (and automatically update) the following site-content count
 
 In the admin backend, user can select what counter(s) to display.
 
-
+> If you like the plugin, feel free to rate it (on the right side of this page) or [donate via PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=58XFDXEP4336Y). I'm gladly supporting this plugin since over 9 years! Thanks a lot! :)
 
 == Installation ==
 
