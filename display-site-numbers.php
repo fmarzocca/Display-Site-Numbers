@@ -38,27 +38,68 @@ class display_site_numbers extends WP_Widget {
 		}
 
 
-	// Creating widget front-end
-	// This is where the action happens
+/******** Creating widget front-end ********************************/
+	
 	public function widget( $args, $instance ) {
+		extract($args);
 		$title = apply_filters( 'widget_title', $instance['title'] );
+		$ck_posts = $instance['ck_posts'];
+		$ck_cats = $instance['ck_cats'];
+		$ck_auth = $instance['ck_auth'];
+		$ck_tags = $instance['ck_tags'];
+		$ck_comm = $instance['ck_comm'];
+		$ck_imgs = $instance['ck_imgs'];
+		
 		// before and after widget arguments are defined by themes
 		echo $args['before_widget'];
 		if ( ! empty( $title ) )
-		echo $args['before_title'] . $title . $args['after_title'];
+			echo $args['before_title'] . $title . $args['after_title'];
 
 		// This is where you run the code and display the output
-		echo __( 'Hello, World!', 'display-site-numbers' );
+		$count_arr = $this->DSN_counters();
+		echo '<div class="DSN-wrapper"><ul>';
+		if ($ck_posts == "1" ): 			
+			$this->DSN_dressit('Posts',$count_arr['posts']);
+		endif;
+		if ($ck_cats == "1" ): 			
+			$this->DSN_dressit('Categories' ,$count_arr['cats']);
+		endif;
+		if ($ck_auth == "1" ): 			
+			$this->DSN_dressit('Authors' ,$count_arr['auth']);
+		endif;
+		if ($ck_tags == "1" ): 			
+			$this->DSN_dressit('Tags' ,$count_arr['tags']);
+		endif;
+		if ($ck_comm == "1" ): 			
+			$this->DSN_dressit('Comments' ,$count_arr['comm']);
+		endif;
+		if ($ck_imgs == "1" ): 			
+			$this->DSN_dressit('Images' ,$count_arr['imgs']);
+		endif;
+		echo "</ul></div>";
 		echo $args['after_widget'];
 	}
 		
-	// Widget Backend 
+/********** Widget Backend **********************************/
+
 	public function form( $instance ) {
-		if ( isset( $instance[ 'title' ] ) ) {
-		$title = $instance[ 'title' ];
+		if ($instance) {
+			$title = $instance[ 'title' ];
+			$ck_posts = $instance['ck_posts'];
+			$ck_cats = $instance['ck_cats'];
+			$ck_auth = $instance['ck_auth'];
+			$ck_tags = $instance['ck_tags'];
+			$ck_comm = $instance['ck_comm'];
+			$ck_imgs = $instance['ck_imgs'];
 		}
 		else {
-		$title = __( 'New title', 'display-site-numbers' );
+			$title = __( 'Total Site Numbers', 'display-site-numbers' );
+			$ck_posts = "1";
+			$ck_cats = "1";
+			$ck_auth = "1";
+			$ck_tags = "1";
+			$ck_comm = "1";
+			$ck_imgs = "1";
 		}
 		// Widget admin form
 		?>
@@ -70,29 +111,61 @@ class display_site_numbers extends WP_Widget {
 
 <label class="description" for="element_1">Select what to display: </label>
 		<span>
-			<ul><li><input checked="checked" id="element_1_1" name="element_1_1" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="element_1_1">Posts count</label></li>
-<li><input checked="checked id="element_1_2" name="element_1_2" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="element_1_2">Categories count</label></li>
-<li><input checked="checked id="element_1_3" name="element_1_3" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="element_1_3">Authors count</label></li>
-<li><input checked="checked id="element_1_4" name="element_1_4" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="element_1_4">Tags count</label></li>
-<li><input checked="checked id="element_1_5" name="element_1_5" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="element_1_5">Comments count</label></li></span>
+			<ul><li><input id="<?php echo $this->get_field_id('ck_posts'); ?>" name="<?php echo $this->get_field_name( 'ck_posts' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_posts ); ?> />
+<label class="choice" >Posts count</label></li>
+<li><input id="<?php echo $this->get_field_id('ck_cats'); ?>" name="<?php echo $this->get_field_name( 'ck_cats' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_cats ); ?> />
+<label class="choice" >Categories count</label></li>
+<li><input id="<?php echo $this->get_field_id('ck_auth'); ?>" name="<?php echo $this->get_field_name( 'ck_auth' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_auth ); ?> />
+<label class="choice" >Authors count</label></li>
+<li><input id="<?php echo $this->get_field_id('ck_tags'); ?>" name="<?php echo $this->get_field_name( 'ck_tags' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_tags ); ?> />
+<label class="choice" >Tags count</label></li>
+<li><input id="<?php echo $this->get_field_id('ck_comm'); ?>" name="<?php echo $this->get_field_name( 'ck_comm' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_comm ); ?> />
+<label class="choice" >Comments count</label></li>
+<li><input id="<?php echo $this->get_field_id('ck_imgs'); ?>" name="<?php echo $this->get_field_name( 'ck_imgs' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_imgs ); ?> />
+<label class="choice" >Images count</label></li></span>
 </li></ul></p>
 <?php 
 	}
 	
-	// Updating widget replacing old instances with new
+/****** Updating widget replacing old instances with new *****************/
+
 	public function update( $new_instance, $old_instance ) {
-		$instance = array();
+		$instance = $old_instance;
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( 	$new_instance['title'] ) : '';
+		 $instance['ck_posts'] = $new_instance['ck_posts'];
+		 $instance['ck_cats'] = $new_instance['ck_cats'];
+		 $instance['ck_auth'] = $new_instance['ck_auth'];
+		 $instance['ck_tags'] = $new_instance['ck_tags'];
+		 $instance['ck_comm'] = $new_instance['ck_comm'];
+		 $instance['ck_imgs'] = $new_instance['ck_imgs'];
+
 		return $instance;
+	}
+
+/************** Get the counters ********************/
+	
+	private function DSN_counters() {
+		global $wpdb;
+		$count_arr = array();
+		$count_arr['posts'] = wp_count_posts()->publish;
+		$count_arr['imgs'] = $wpdb->get_var("SELECT COUNT(ID) FROM {$wpdb->prefix}posts WHERE post_type = 'attachment'");
+		$count_arr['cats'] = wp_count_terms('category');
+		$count_arr['tags'] = wp_count_terms('post_tag');
+		$count_arr['comm'] = wp_count_comments()->total_comments;
+		$users = count_users();
+		$count_arr['auth'] = $users['avail_roles']['author']; 
+		return $count_arr;
+	}
+	
+/*************** Dress the rows ****************/
+
+	private function DSN_dressit($item, $count) {
+		echo "<li><span class='item'>".__($item, 'display-site-numbers') .": </span><span class='count'>". $count."</span></li>";
 	}
 
 } // Class display_site_numbers ends here
 
+/********************** *********************************/
 // Register and load the widget
 function DSN_load_widget() {
 	register_widget( 'display_site_numbers' );
