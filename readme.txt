@@ -4,7 +4,7 @@
 
 Contributors: fmarzocca
 Donate link: TBD
-Tags: widget, count posts, count categories, widget
+Tags: widget, count posts, count categories, counters
 Requires at least: 4.0.1
 Tested up to: 4.1
 Stable tag: 0.5
