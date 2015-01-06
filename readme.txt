@@ -43,7 +43,7 @@ In the admin backend, user can select what counter(s) to display.
 
 1. The admin backend
 2. The widget frontend
-3. Another view of the fronted, with a different style
+3. Another view of the frontend, with a different style
 
 == Changelog ==
 
