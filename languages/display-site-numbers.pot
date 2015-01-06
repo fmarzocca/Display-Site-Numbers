@@ -1,0 +1,80 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: display-site-numbers\n"
+"POT-Creation-Date: 2015-01-06 13:35+0100\n"
+"PO-Revision-Date: 2015-01-06 13:38+0100\n"
+"Last-Translator: Fabio Marzocca <marzoccafabio@gmail.com>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../display-site-numbers.php:37
+msgid "Display Site Numbers"
+msgstr ""
+
+#: ../display-site-numbers.php:62
+msgid "Posts"
+msgstr ""
+
+#: ../display-site-numbers.php:65
+msgid "Categories"
+msgstr ""
+
+#: ../display-site-numbers.php:68
+msgid "Authors"
+msgstr ""
+
+#: ../display-site-numbers.php:71
+msgid "Tags"
+msgstr ""
+
+#: ../display-site-numbers.php:74
+msgid "Comments"
+msgstr ""
+
+#: ../display-site-numbers.php:77
+msgid "Images"
+msgstr ""
+
+#: ../display-site-numbers.php:96
+msgid "Total Site Numbers"
+msgstr ""
+
+#: ../display-site-numbers.php:107
+msgid "Title:"
+msgstr "Title"
+
+#: ../display-site-numbers.php:112
+msgid "Select what to display:"
+msgstr ""
+
+#: ../display-site-numbers.php:115
+msgid "Posts count"
+msgstr ""
+
+#: ../display-site-numbers.php:117
+msgid "Categories count"
+msgstr ""
+
+#: ../display-site-numbers.php:119
+msgid "Authors count"
+msgstr ""
+
+#: ../display-site-numbers.php:121
+msgid "Tags count"
+msgstr ""
+
+#: ../display-site-numbers.php:123
+msgid "Comments count"
+msgstr ""
+
+#: ../display-site-numbers.php:125
+msgid "Images count"
+msgstr ""

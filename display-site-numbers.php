@@ -59,22 +59,22 @@ class display_site_numbers extends WP_Widget {
 		$count_arr = $this->DSN_counters();
 		echo '<div class="DSN-wrapper"><ul>';
 		if ($ck_posts == "1" ): 			
-			$this->DSN_dressit('Posts',$count_arr['posts']);
+			$this->DSN_dressit(__('Posts', 'display-site-numbers') ,$count_arr['posts']);
 		endif;
 		if ($ck_cats == "1" ): 			
-			$this->DSN_dressit('Categories' ,$count_arr['cats']);
+			$this->DSN_dressit(__('Categories', 'display-site-numbers')  ,$count_arr['cats']);
 		endif;
 		if ($ck_auth == "1" ): 			
-			$this->DSN_dressit('Authors' ,$count_arr['auth']);
+			$this->DSN_dressit(__('Authors', 'display-site-numbers'), $count_arr['auth']);
 		endif;
 		if ($ck_tags == "1" ): 			
-			$this->DSN_dressit('Tags' ,$count_arr['tags']);
+			$this->DSN_dressit(__('Tags', 'display-site-numbers') ,$count_arr['tags']);
 		endif;
 		if ($ck_comm == "1" ): 			
-			$this->DSN_dressit('Comments' ,$count_arr['comm']);
+			$this->DSN_dressit(__('Comments', 'display-site-numbers') ,$count_arr['comm']);
 		endif;
 		if ($ck_imgs == "1" ): 			
-			$this->DSN_dressit('Images' ,$count_arr['imgs']);
+			$this->DSN_dressit(__('Images', 'display-site-numbers') ,$count_arr['imgs']);
 		endif;
 		echo "</ul></div>";
 		echo $args['after_widget'];
@@ -104,25 +104,25 @@ class display_site_numbers extends WP_Widget {
 		// Widget admin form
 		?>
 <p>
-<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> 
+<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'display-site-numbers'); ?></label> 
 <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 </p>
 <p>
 
-<label class="description" for="element_1">Select what to display: </label>
+<label class="description" for="element_1"><?php _e('Select what to display:', 'display-site-numbers'); ?></label>
 		<span>
 			<ul><li><input id="<?php echo $this->get_field_id('ck_posts'); ?>" name="<?php echo $this->get_field_name( 'ck_posts' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_posts ); ?> />
-<label class="choice" >Posts count</label></li>
+<label class="choice" ><?php _e('Posts count', 'display-site-numbers'); ?></label></li>
 <li><input id="<?php echo $this->get_field_id('ck_cats'); ?>" name="<?php echo $this->get_field_name( 'ck_cats' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_cats ); ?> />
-<label class="choice" >Categories count</label></li>
+<label class="choice" ><?php _e('Categories count', 'display-site-numbers'); ?></label></li>
 <li><input id="<?php echo $this->get_field_id('ck_auth'); ?>" name="<?php echo $this->get_field_name( 'ck_auth' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_auth ); ?> />
-<label class="choice" >Authors count</label></li>
+<label class="choice" ><?php _e('Authors count', 'display-site-numbers'); ?></label></li>
 <li><input id="<?php echo $this->get_field_id('ck_tags'); ?>" name="<?php echo $this->get_field_name( 'ck_tags' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_tags ); ?> />
-<label class="choice" >Tags count</label></li>
+<label class="choice" ><?php _e('Tags count', 'display-site-numbers'); ?></label></li>
 <li><input id="<?php echo $this->get_field_id('ck_comm'); ?>" name="<?php echo $this->get_field_name( 'ck_comm' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_comm ); ?> />
-<label class="choice" >Comments count</label></li>
+<label class="choice" ><?php _e('Comments count', 'display-site-numbers'); ?></label></li>
 <li><input id="<?php echo $this->get_field_id('ck_imgs'); ?>" name="<?php echo $this->get_field_name( 'ck_imgs' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_imgs ); ?> />
-<label class="choice" >Images count</label></li></span>
+<label class="choice" ><?php _e('Images count', 'display-site-numbers'); ?></label></li></span>
 </li></ul></p>
 <?php 
 	}
@@ -160,7 +160,7 @@ class display_site_numbers extends WP_Widget {
 /*************** Dress the rows ****************/
 
 	private function DSN_dressit($item, $count) {
-		echo "<li><span class='item'>".__($item, 'display-site-numbers') .": </span><span class='count'>". $count."</span></li>";
+		echo "<li><span class='item'>".$item.": </span><span class='count'>". $count."</span></li>";
 	}
 
 } // Class display_site_numbers ends here
@@ -171,6 +171,13 @@ function DSN_load_widget() {
 	register_widget( 'display_site_numbers' );
 }
 add_action( 'widgets_init', 'DSN_load_widget' );
+
+/* Localization */
+
+function DSN_load_i18n(){
+	load_plugin_textdomain( 'display-site-numbers', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	}
+	add_action( 'plugins_loaded', 'DSN_load_i18n' );
 
 
 
