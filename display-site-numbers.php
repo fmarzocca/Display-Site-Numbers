@@ -3,7 +3,7 @@
 	Plugin Name: Display Site Numbers
 	Plugin URI: https://github.com/fmarzocca/display-site-numbers
 	Description: A widget to display all relevant site content numbers
-	Version: 0.5
+	Version: 0.6
 	Author: Fabio Marzocca
 	Author URI: http://www.marzocca.net
 	Text Domain:   display-site-numbers
@@ -56,25 +56,25 @@ class display_site_numbers extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 
 		// This is where you run the code and display the output
-		$count_arr = $this->DSN_counters();
+		$count_arr = DSN_counters();
 		echo '<div class="DSN-wrapper"><ul>';
 		if ($ck_posts == "1" ): 			
-			$this->DSN_dressit(__('Posts', 'display-site-numbers') ,$count_arr['posts']);
+			DSN_dressit(__('Posts', 'display-site-numbers') ,$count_arr['posts']);
 		endif;
 		if ($ck_cats == "1" ): 			
-			$this->DSN_dressit(__('Categories', 'display-site-numbers')  ,$count_arr['cats']);
+			DSN_dressit(__('Categories', 'display-site-numbers')  ,$count_arr['cats']);
 		endif;
 		if ($ck_auth == "1" ): 			
-			$this->DSN_dressit(__('Authors', 'display-site-numbers'), $count_arr['auth']);
+			DSN_dressit(__('Authors', 'display-site-numbers'), $count_arr['auth']);
 		endif;
 		if ($ck_tags == "1" ): 			
-			$this->DSN_dressit(__('Tags', 'display-site-numbers') ,$count_arr['tags']);
+			DSN_dressit(__('Tags', 'display-site-numbers') ,$count_arr['tags']);
 		endif;
 		if ($ck_comm == "1" ): 			
-			$this->DSN_dressit(__('Comments', 'display-site-numbers') ,$count_arr['comm']);
+			DSN_dressit(__('Comments', 'display-site-numbers') ,$count_arr['comm']);
 		endif;
 		if ($ck_imgs == "1" ): 			
-			$this->DSN_dressit(__('Images', 'display-site-numbers') ,$count_arr['imgs']);
+			DSN_dressit(__('Images', 'display-site-numbers') ,$count_arr['imgs']);
 		endif;
 		echo "</ul></div>";
 		echo $args['after_widget'];
@@ -142,9 +142,15 @@ class display_site_numbers extends WP_Widget {
 		return $instance;
 	}
 
+
+
+} // Class display_site_numbers ends here
+
+/********************** Utility Functions *********************************/
+
 /************** Get the counters ********************/
 	
-	private function DSN_counters() {
+	function DSN_counters() {
 		global $wpdb;
 		$count_arr = array();
 		$count_arr['posts'] = wp_count_posts()->publish;
@@ -159,13 +165,14 @@ class display_site_numbers extends WP_Widget {
 	
 /*************** Dress the rows ****************/
 
-	private function DSN_dressit($item, $count) {
+	function DSN_dressit($item, $count) {
 		echo "<li><span class='item'>".$item.": </span><span class='count'>". $count."</span></li>";
+		
 	}
 
-} // Class display_site_numbers ends here
+/*************************************************/
 
-/********************** *********************************/
+
 // Register and load the widget
 function DSN_load_widget() {
 	register_widget( 'display_site_numbers' );
@@ -187,5 +194,40 @@ function DSN_css(){
 		wp_enqueue_style( 'DSN_css' );
 	} // function
 add_action( 'wp_enqueue_scripts', 'DSN_css' );
+
+/************** Add shortcode **************/
+function DSN_list ($atts) {
+		$atts = shortcode_atts(array(
+			'show'	=>	"Categories, Posts, Images, Authors, Tags, Comments"
+			 ), $atts);
+			 
+		$count_arr = DSN_counters();
+		ob_start();
+		echo '<div class="DSN-wrapper" ><ul>';
+		if (strpos($atts['show'], "Authors") !== false): 
+			DSN_dressit(__('Authors', 'display-site-numbers'), $count_arr['auth']);
+		endif;
+		if (strpos($atts['show'], "Categories")!== false):
+			DSN_dressit(__('Categories', 'display-site-numbers')  ,$count_arr['cats']);
+		endif;
+		if (strpos($atts['show'], "Posts")!== false): 
+			DSN_dressit(__('Posts', 'display-site-numbers') ,$count_arr['posts']);
+		endif;
+		if (strpos($atts['show'], "Comments")!== false): 
+			DSN_dressit(__('Comments', 'display-site-numbers') ,$count_arr['comm']);
+		endif;
+		if (strpos($atts['show'], "Tags")!== false): 
+			DSN_dressit(__('Tags', 'display-site-numbers') ,$count_arr['tags']);
+		endif;
+		if (strpos($atts['show'], "Images")!== false): 
+			DSN_dressit(__('Images', 'display-site-numbers') ,$count_arr['imgs']);
+		endif;
+	echo "</ul></div>";
+	echo '<p style="clear: both;"></p>';
+	$output_string=ob_get_contents();;
+	ob_end_clean();
+	return $output_string;
+}
+add_shortcode ("DSN-list","DSN_list");
 
 ?>

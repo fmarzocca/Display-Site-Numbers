@@ -7,13 +7,15 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: widget, count posts, count categories, counters
 Requires at least: 4.0.1
 Tested up to: 4.1
-Stable tag: 0.5
+Stable tag: 0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Widget to display all relevant site content numbers
+Widget and shortcode to display all relevant site content numbers
 
 == Description ==
+
+= Widget =
 
 The widget will show (and automatically update) the following site-content counters:
 
@@ -25,6 +27,22 @@ The widget will show (and automatically update) the following site-content count
 * Authors count
 
 In the admin backend, user can select what counter(s) to display.
+
+= Shortcode =
+
+Add this shortcode in your page/post:
+
+<pre><code>
+[DSN-list]
+</code></pre>
+to show all the 6 counters. If you want to specify what counter(s) to show, use this syntax;
+
+<pre><code>
+[DSN-list show="Categories, Comments, Posts]
+</code></pre>
+
+Valid terms in the list are: Categories, Comments, Posts, Authors, Images, Tags.
+
 
 > If you like the plugin, feel free to rate it (on the right side of this page) or [donate via PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=58XFDXEP4336Y). I'm gladly supporting this plugin since over 9 years! Thanks a lot! :)
 
@@ -44,8 +62,12 @@ In the admin backend, user can select what counter(s) to display.
 1. The admin backend
 2. The widget frontend
 3. Another view of the frontend, with a different style
+4. A view of the shortcode output in a post/page.
 
 == Changelog ==
+
+= 0.6 =
+* Added shortcode
 
 = 0.5 =
 * First working version
