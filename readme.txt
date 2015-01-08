@@ -44,7 +44,7 @@ to show all the 6 counters. If you want to specify what counter(s) to show, use 
 Valid terms in the list are: Categories, Comments, Posts, Authors, Images, Tags.
 
 
-> If you like the plugin, feel free to rate it (on the right side of this page) or [donate via PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=58XFDXEP4336Y). I'm gladly supporting this plugin since over 9 years! Thanks a lot! :)
+> If you like the plugin, feel free to rate it (on the right side of this page) or [donate via PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=58XFDXEP4336Y). Thanks a lot! :)
 
 == Installation ==
 
