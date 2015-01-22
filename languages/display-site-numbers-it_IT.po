@@ -1,80 +1,88 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: display-site-numbers\n"
-"POT-Creation-Date: 2015-01-06 13:35+0100\n"
-"PO-Revision-Date: 2015-01-06 14:08+0100\n"
+"POT-Creation-Date: 2015-01-22 10:09+0100\n"
+"PO-Revision-Date: 2015-01-22 10:10+0100\n"
 "Last-Translator: Fabio Marzocca <marzoccafabio@gmail.com>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"Language: it\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../display-site-numbers.php:37
 msgid "Display Site Numbers"
 msgstr "Visualizza i numeri del sito"
 
-#: ../display-site-numbers.php:62
+#: ../display-site-numbers.php:63 ../display-site-numbers.php:224
 msgid "Posts"
 msgstr "Articoli"
 
-#: ../display-site-numbers.php:65
+#: ../display-site-numbers.php:66 ../display-site-numbers.php:227
+msgid "Pages"
+msgstr "﻿Pagine"
+
+#: ../display-site-numbers.php:69 ../display-site-numbers.php:221
 msgid "Categories"
 msgstr "Sezioni"
 
-#: ../display-site-numbers.php:68
+#: ../display-site-numbers.php:72 ../display-site-numbers.php:218
 msgid "Authors"
 msgstr "Autori"
 
-#: ../display-site-numbers.php:71
+#: ../display-site-numbers.php:75 ../display-site-numbers.php:234
 msgid "Tags"
 msgstr "Parole-chiave"
 
-#: ../display-site-numbers.php:74
+#: ../display-site-numbers.php:78 ../display-site-numbers.php:231
 msgid "Comments"
 msgstr "Commenti"
 
-#: ../display-site-numbers.php:77
+#: ../display-site-numbers.php:81 ../display-site-numbers.php:237
 msgid "Images"
 msgstr "Immagini"
 
-#: ../display-site-numbers.php:96
+#: ../display-site-numbers.php:101
 msgid "Total Site Numbers"
 msgstr "Tutti i numeri del sito"
 
-#: ../display-site-numbers.php:107
+#: ../display-site-numbers.php:113
 msgid "Title:"
 msgstr "Titolo:"
 
-#: ../display-site-numbers.php:112
+#: ../display-site-numbers.php:118
 msgid "Select what to display:"
 msgstr "Scegli cosa visualizzare:"
 
-#: ../display-site-numbers.php:115
+#: ../display-site-numbers.php:121
 msgid "Posts count"
 msgstr "Totale articoli"
 
-#: ../display-site-numbers.php:117
+#: ../display-site-numbers.php:123
+msgid "Pages count"
+msgstr "Totale pagine"
+
+#: ../display-site-numbers.php:125
 msgid "Categories count"
 msgstr "Totale categorie"
 
-#: ../display-site-numbers.php:119
+#: ../display-site-numbers.php:127
 msgid "Authors count"
 msgstr "Totale autori"
 
-#: ../display-site-numbers.php:121
+#: ../display-site-numbers.php:129
 msgid "Tags count"
 msgstr "Totale parole-chiave"
 
-#: ../display-site-numbers.php:123
+#: ../display-site-numbers.php:131
 msgid "Comments count"
 msgstr "Totale commenti"
 
-#: ../display-site-numbers.php:125
+#: ../display-site-numbers.php:133
 msgid "Images count"
 msgstr "Totale immagini"

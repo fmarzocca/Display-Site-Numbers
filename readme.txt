@@ -7,7 +7,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: widget, count posts, count categories, counters
 Requires at least: 4.0.1
 Tested up to: 4.1
-Stable tag: 0.6
+Stable tag: 0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,7 @@ The widget will show (and automatically update) the following site-content count
 
 * Categories count
 * Posts count
+* Pages count
 * Images count
 * Tags count
 * Comments count
@@ -41,7 +42,7 @@ to show all the 6 counters. If you want to specify what counter(s) to show, use 
 [DSN-list show="Categories, Comments, Posts]
 </code></pre>
 
-Valid terms in the list are: Categories, Comments, Posts, Authors, Images, Tags.
+Valid terms in the list are: Categories, Comments, Posts, Pages, Authors, Images, Tags.
 
 
 > If you like the plugin, feel free to rate it (on the right side of this page) or [donate via PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=58XFDXEP4336Y). Thanks a lot! :)
@@ -65,6 +66,9 @@ Valid terms in the list are: Categories, Comments, Posts, Authors, Images, Tags.
 4. A view of the shortcode output in a post/page.
 
 == Changelog ==
+
+= 0.7 =
+*Added pages count
 
 = 0.6 =
 * Added shortcode

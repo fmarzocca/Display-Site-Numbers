@@ -3,7 +3,7 @@
 	Plugin Name: Display Site Numbers
 	Plugin URI: https://github.com/fmarzocca/display-site-numbers
 	Description: A widget to display all relevant site content numbers
-	Version: 0.6
+	Version: 0.7
 	Author: Fabio Marzocca
 	Author URI: http://www.marzocca.net
 	Text Domain:   display-site-numbers
@@ -44,6 +44,7 @@ class display_site_numbers extends WP_Widget {
 		extract($args);
 		$title = apply_filters( 'widget_title', $instance['title'] );
 		$ck_posts = $instance['ck_posts'];
+		$ck_pages = $instance['ck_pages'];
 		$ck_cats = $instance['ck_cats'];
 		$ck_auth = $instance['ck_auth'];
 		$ck_tags = $instance['ck_tags'];
@@ -60,6 +61,9 @@ class display_site_numbers extends WP_Widget {
 		echo '<div class="DSN-wrapper"><ul>';
 		if ($ck_posts == "1" ): 			
 			DSN_dressit(__('Posts', 'display-site-numbers') ,$count_arr['posts']);
+		endif;
+		if ($ck_pages == "1" ): 			
+			DSN_dressit(__('Pages', 'display-site-numbers') ,$count_arr['pages']);
 		endif;
 		if ($ck_cats == "1" ): 			
 			DSN_dressit(__('Categories', 'display-site-numbers')  ,$count_arr['cats']);
@@ -86,6 +90,7 @@ class display_site_numbers extends WP_Widget {
 		if ($instance) {
 			$title = $instance[ 'title' ];
 			$ck_posts = $instance['ck_posts'];
+			$ck_pages = $instance['ck_pages'];
 			$ck_cats = $instance['ck_cats'];
 			$ck_auth = $instance['ck_auth'];
 			$ck_tags = $instance['ck_tags'];
@@ -95,6 +100,7 @@ class display_site_numbers extends WP_Widget {
 		else {
 			$title = __( 'Total Site Numbers', 'display-site-numbers' );
 			$ck_posts = "1";
+			$ck_pages = "1";
 			$ck_cats = "1";
 			$ck_auth = "1";
 			$ck_tags = "1";
@@ -113,6 +119,8 @@ class display_site_numbers extends WP_Widget {
 		<span>
 			<ul><li><input id="<?php echo $this->get_field_id('ck_posts'); ?>" name="<?php echo $this->get_field_name( 'ck_posts' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_posts ); ?> />
 <label class="choice" ><?php _e('Posts count', 'display-site-numbers'); ?></label></li>
+<li><input id="<?php echo $this->get_field_id('ck_pages'); ?>" name="<?php echo $this->get_field_name( 'ck_pages' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_pages ); ?> />
+<label class="choice" ><?php _e('Pages count', 'display-site-numbers'); ?></label></li>
 <li><input id="<?php echo $this->get_field_id('ck_cats'); ?>" name="<?php echo $this->get_field_name( 'ck_cats' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_cats ); ?> />
 <label class="choice" ><?php _e('Categories count', 'display-site-numbers'); ?></label></li>
 <li><input id="<?php echo $this->get_field_id('ck_auth'); ?>" name="<?php echo $this->get_field_name( 'ck_auth' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_auth ); ?> />
@@ -133,6 +141,7 @@ class display_site_numbers extends WP_Widget {
 		$instance = $old_instance;
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( 	$new_instance['title'] ) : '';
 		 $instance['ck_posts'] = $new_instance['ck_posts'];
+		 $instance['ck_pages'] = $new_instance['ck_pages'];		 
 		 $instance['ck_cats'] = $new_instance['ck_cats'];
 		 $instance['ck_auth'] = $new_instance['ck_auth'];
 		 $instance['ck_tags'] = $new_instance['ck_tags'];
@@ -154,6 +163,7 @@ class display_site_numbers extends WP_Widget {
 		global $wpdb;
 		$count_arr = array();
 		$count_arr['posts'] = wp_count_posts()->publish;
+		$count_arr['pages'] = wp_count_posts('page')->publish;
 		$count_arr['imgs'] = $wpdb->get_var("SELECT COUNT(ID) FROM {$wpdb->prefix}posts WHERE post_type = 'attachment'");
 		$count_arr['cats'] = wp_count_terms('category');
 		$count_arr['tags'] = wp_count_terms('post_tag');
@@ -198,7 +208,7 @@ add_action( 'wp_enqueue_scripts', 'DSN_css' );
 /************** Add shortcode **************/
 function DSN_list ($atts) {
 		$atts = shortcode_atts(array(
-			'show'	=>	"Categories, Posts, Images, Authors, Tags, Comments"
+			'show'	=>	"Categories, Posts, Pages, Images, Authors, Tags, Comments"
 			 ), $atts);
 			 
 		$count_arr = DSN_counters();
@@ -213,6 +223,10 @@ function DSN_list ($atts) {
 		if (strpos($atts['show'], "Posts")!== false): 
 			DSN_dressit(__('Posts', 'display-site-numbers') ,$count_arr['posts']);
 		endif;
+		if (strpos($atts['show'], "Pages")!== false): 
+			DSN_dressit(__('Pages', 'display-site-numbers') ,$count_arr['pages']);
+		endif;
+
 		if (strpos($atts['show'], "Comments")!== false): 
 			DSN_dressit(__('Comments', 'display-site-numbers') ,$count_arr['comm']);
 		endif;
