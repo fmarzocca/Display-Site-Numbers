@@ -68,7 +68,7 @@ Valid terms in the list are: Categories, Comments, Posts, Pages, Authors, Images
 == Changelog ==
 
 = 0.7 =
-*Added pages count
+* Added pages count
 
 = 0.6 =
 * Added shortcode
