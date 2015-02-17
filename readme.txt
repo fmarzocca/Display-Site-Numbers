@@ -7,7 +7,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: widget, count posts, count categories, counters
 Requires at least: 4.0.1
 Tested up to: 4.1
-Stable tag: 0.7
+Stable tag: 0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,9 @@ Valid terms in the list are: Categories, Comments, Posts, Pages, Authors, Images
 4. A view of the shortcode output in a post/page.
 
 == Changelog ==
+
+= 0.8 =
+* Added Norwegian localization
 
 = 0.7 =
 * Added pages count

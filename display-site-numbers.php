@@ -3,7 +3,7 @@
 	Plugin Name: Display Site Numbers
 	Plugin URI: https://github.com/fmarzocca/display-site-numbers
 	Description: A widget to display all relevant site content numbers
-	Version: 0.7
+	Version: 0.8
 	Author: Fabio Marzocca
 	Author URI: http://www.marzocca.net
 	Text Domain:   display-site-numbers
