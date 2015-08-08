@@ -3,7 +3,7 @@
 	Plugin Name: Display Site Numbers
 	Plugin URI: https://github.com/fmarzocca/display-site-numbers
 	Description: A widget to display all relevant site content numbers
-	Version: 0.8
+	Version: 0.9
 	Author: Fabio Marzocca
 	Author URI: http://www.marzocca.net
 	Text Domain:   display-site-numbers
@@ -32,12 +32,15 @@ define('DSN_DIR', dirname(__FILE__));
 
 
 class display_site_numbers extends WP_Widget {
-
-		function display_site_numbers() {
-			parent::WP_Widget(false, $name = __('Display Site Numbers', 'display-site-numbers') );
-		}
-
-
+	
+	function __construct() {
+		parent::__construct( 'display-site-numbers',
+							'Display Site Numbers',
+							array( 'description' => __('Display Site Numbers', 'display-site-numbers')) 
+						   );
+	}
+	
+	
 /******** Creating widget front-end ********************************/
 	
 	public function widget( $args, $instance ) {

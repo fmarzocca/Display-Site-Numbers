@@ -6,8 +6,8 @@ Contributors: fmarzocca
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=58XFDXEP4336Y
 Tags: widget, count posts, count categories, counters
 Requires at least: 4.0.1
-Tested up to: 4.2
-Stable tag: 0.8
+Tested up to: 4.2.4
+Stable tag: 0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,11 @@ Valid terms in the list are: Categories, Comments, Posts, Pages, Authors, Images
 4. A view of the shortcode output in a post/page.
 
 == Changelog ==
+
+= 0.9 =
+* Ensuring compatibility with WP 4.3
+* Removed deprecated php4 code
+* Ready for php7
 
 = 0.8 =
 * Added Norwegian localization
