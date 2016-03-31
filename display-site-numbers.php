@@ -3,7 +3,7 @@
 	Plugin Name: Display Site Numbers
 	Plugin URI: https://github.com/fmarzocca/display-site-numbers
 	Description: A widget to display all relevant site content numbers
-	Version: 0.9
+	Version: 1.0
 	Author: Fabio Marzocca
 	Author URI: http://www.marzocca.net
 	Text Domain:   display-site-numbers
@@ -36,11 +36,24 @@ class display_site_numbers extends WP_Widget {
 	function __construct() {
 		parent::__construct( 'display-site-numbers',
 							'Display Site Numbers',
-							array( 'description' => __('Display Site Numbers', 'display-site-numbers')) 
+							array( 'description' => __('Display Site Numbers', 'display-site-numbers'),
+               						 'customize_selective_refresh' => true,) 
 						   );
+		
+		 if ( is_active_widget( false, false, $this->id_base ) || is_customize_preview() ) {
+            add_action( 'wp_enqueue_scripts', array( $this, 'DSN_css' ) );
+            }
 	}
 	
-	
+	/* Add CSS */	
+function DSN_css(){
+		wp_register_style( 'DSN_css', plugins_url( 'DSN.css' , __FILE__ ) );
+		wp_enqueue_style( 'DSN_css' );
+	} // function
+
+
+
+
 /******** Creating widget front-end ********************************/
 	
 	public function widget( $args, $instance ) {
@@ -201,12 +214,6 @@ function DSN_load_i18n(){
 
 
 
-/* Add CSS */	
-function DSN_css(){
-		wp_register_style( 'DSN_css', plugins_url( 'DSN.css' , __FILE__ ) );
-		wp_enqueue_style( 'DSN_css' );
-	} // function
-add_action( 'wp_enqueue_scripts', 'DSN_css' );
 
 /************** Add shortcode **************/
 function DSN_list ($atts) {
