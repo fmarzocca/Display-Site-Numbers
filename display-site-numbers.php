@@ -9,11 +9,11 @@
 	Text Domain:   display-site-numbers
   	Domain Path:   /languages/
 	License: GPL2
-	
+
 	Copyright 2015  by Fabio Marzocca  (email : marzoccafabio@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as 
+    it under the terms of the GNU General Public License, version 2, as
     published by the Free Software Foundation.
 
     This program is distributed in the hope that it will be useful,
@@ -32,20 +32,20 @@ define('DSN_DIR', dirname(__FILE__));
 
 
 class display_site_numbers extends WP_Widget {
-	
+
 	function __construct() {
 		parent::__construct( 'display-site-numbers',
 							'Display Site Numbers',
 							array( 'description' => __('Display Site Numbers', 'display-site-numbers'),
-               						 'customize_selective_refresh' => true,) 
+               						 'customize_selective_refresh' => true,)
 						   );
-		
+
 		 if ( is_active_widget( false, false, $this->id_base ) || is_customize_preview() ) {
             add_action( 'wp_enqueue_scripts', array( $this, 'DSN_css' ) );
             }
 	}
-	
-	/* Add CSS */	
+
+	/* Add CSS */
 function DSN_css(){
 		wp_register_style( 'DSN_css', plugins_url( 'DSN.css' , __FILE__ ) );
 		wp_enqueue_style( 'DSN_css' );
@@ -55,7 +55,7 @@ function DSN_css(){
 
 
 /******** Creating widget front-end ********************************/
-	
+
 	public function widget( $args, $instance ) {
 		extract($args);
 		$title = apply_filters( 'widget_title', $instance['title'] );
@@ -66,7 +66,7 @@ function DSN_css(){
 		$ck_tags = $instance['ck_tags'];
 		$ck_comm = $instance['ck_comm'];
 		$ck_imgs = $instance['ck_imgs'];
-		
+
 		// before and after widget arguments are defined by themes
 		echo $args['before_widget'];
 		if ( ! empty( $title ) )
@@ -74,32 +74,33 @@ function DSN_css(){
 
 		// This is where you run the code and display the output
 		$count_arr = DSN_counters();
-		echo '<div class="DSN-wrapper"><ul>';
-		if ($ck_posts == "1" ): 			
+		// echo '<div class="DSN-wrapper"><ul>';
+		echo '<div class="DSN-wrapper">';
+		if ($ck_posts == "1" ):
 			DSN_dressit(__('Posts', 'display-site-numbers') ,$count_arr['posts']);
 		endif;
-		if ($ck_pages == "1" ): 			
+		if ($ck_pages == "1" ):
 			DSN_dressit(__('Pages', 'display-site-numbers') ,$count_arr['pages']);
 		endif;
-		if ($ck_cats == "1" ): 			
+		if ($ck_cats == "1" ):
 			DSN_dressit(__('Categories', 'display-site-numbers')  ,$count_arr['cats']);
 		endif;
-		if ($ck_auth == "1" ): 			
+		if ($ck_auth == "1" ):
 			DSN_dressit(__('Authors', 'display-site-numbers'), $count_arr['auth']);
 		endif;
-		if ($ck_tags == "1" ): 			
+		if ($ck_tags == "1" ):
 			DSN_dressit(__('Tags', 'display-site-numbers') ,$count_arr['tags']);
 		endif;
-		if ($ck_comm == "1" ): 			
+		if ($ck_comm == "1" ):
 			DSN_dressit(__('Comments', 'display-site-numbers') ,$count_arr['comm']);
 		endif;
-		if ($ck_imgs == "1" ): 			
+		if ($ck_imgs == "1" ):
 			DSN_dressit(__('Images', 'display-site-numbers') ,$count_arr['imgs']);
 		endif;
-		echo "</ul></div>";
+		echo "</div>";
 		echo $args['after_widget'];
 	}
-		
+
 /********** Widget Backend **********************************/
 
 	public function form( $instance ) {
@@ -126,7 +127,7 @@ function DSN_css(){
 		// Widget admin form
 		?>
 <p>
-<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'display-site-numbers'); ?></label> 
+<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'display-site-numbers'); ?></label>
 <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 </p>
 <p>
@@ -148,16 +149,16 @@ function DSN_css(){
 <li><input id="<?php echo $this->get_field_id('ck_imgs'); ?>" name="<?php echo $this->get_field_name( 'ck_imgs' ); ?>" type="checkbox" value="1" <?php checked( '1', $ck_imgs ); ?> />
 <label class="choice" ><?php _e('Images count', 'display-site-numbers'); ?></label></li></span>
 </li></ul></p>
-<?php 
+<?php
 	}
-	
+
 /****** Updating widget replacing old instances with new *****************/
 
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( 	$new_instance['title'] ) : '';
 		 $instance['ck_posts'] = $new_instance['ck_posts'];
-		 $instance['ck_pages'] = $new_instance['ck_pages'];		 
+		 $instance['ck_pages'] = $new_instance['ck_pages'];
 		 $instance['ck_cats'] = $new_instance['ck_cats'];
 		 $instance['ck_auth'] = $new_instance['ck_auth'];
 		 $instance['ck_tags'] = $new_instance['ck_tags'];
@@ -174,7 +175,7 @@ function DSN_css(){
 /********************** Utility Functions *********************************/
 
 /************** Get the counters ********************/
-	
+
 	function DSN_counters() {
 		global $wpdb;
 		$count_arr = array();
@@ -185,16 +186,22 @@ function DSN_css(){
 		$count_arr['tags'] = wp_count_terms('post_tag');
 		$count_arr['comm'] = wp_count_comments()->total_comments;
 		$users = count_users();
-		$count_arr['auth'] = $users['avail_roles']['author']; 
+		$count_arr['auth'] = $users['avail_roles']['author'];
 		return $count_arr;
 	}
-	
+
 /*************** Dress the rows ****************/
 
-	function DSN_dressit($item, $count) {
-		echo "<li><span class='item'>".$item.": </span><span class='count'>". $count."</span></li>";
-		
-	}
+/* 'block-style' update made by Chris Nielsen (chris.relaxing@gmail.com) */
+function DSN_dressit($item, $count) {
+	echo "
+  <div class='DSN-wrapper-cell'>
+	<table class='DSN-wrapper-table'>
+	  <tr><td><div class='DSN-wrapper-label'>$item: </div></td></tr>
+	  <tr><td><div class='DSN-wrapper-count'>$count</div></td></tr>
+	</table>
+	</div>";
+}
 
 /*************************************************/
 
@@ -220,33 +227,33 @@ function DSN_list ($atts) {
 		$atts = shortcode_atts(array(
 			'show'	=>	"Categories, Posts, Pages, Images, Authors, Tags, Comments"
 			 ), $atts);
-			 
+
 		$count_arr = DSN_counters();
 		ob_start();
-		echo '<div class="DSN-wrapper" ><ul>';
-		if (strpos($atts['show'], "Authors") !== false): 
+		echo '<div class="DSN-wrapper">';
+		if (strpos($atts['show'], "Posts")!== false):
+			DSN_dressit(__('Posts', 'display-site-numbers') ,$count_arr['posts']);
+		endif;
+		if (strpos($atts['show'], "Pages")!== false):
+			DSN_dressit(__('Pages', 'display-site-numbers') ,$count_arr['pages']);
+		endif;
+		if (strpos($atts['show'], "Authors") !== false):
 			DSN_dressit(__('Authors', 'display-site-numbers'), $count_arr['auth']);
 		endif;
 		if (strpos($atts['show'], "Categories")!== false):
 			DSN_dressit(__('Categories', 'display-site-numbers')  ,$count_arr['cats']);
 		endif;
-		if (strpos($atts['show'], "Posts")!== false): 
-			DSN_dressit(__('Posts', 'display-site-numbers') ,$count_arr['posts']);
-		endif;
-		if (strpos($atts['show'], "Pages")!== false): 
-			DSN_dressit(__('Pages', 'display-site-numbers') ,$count_arr['pages']);
-		endif;
-
-		if (strpos($atts['show'], "Comments")!== false): 
+		if (strpos($atts['show'], "Comments")!== false):
 			DSN_dressit(__('Comments', 'display-site-numbers') ,$count_arr['comm']);
 		endif;
-		if (strpos($atts['show'], "Tags")!== false): 
+		if (strpos($atts['show'], "Tags")!== false):
 			DSN_dressit(__('Tags', 'display-site-numbers') ,$count_arr['tags']);
 		endif;
-		if (strpos($atts['show'], "Images")!== false): 
+		if (strpos($atts['show'], "Images")!== false):
 			DSN_dressit(__('Images', 'display-site-numbers') ,$count_arr['imgs']);
 		endif;
-	echo "</ul></div>";
+	echo "</div>";
+
 	echo '<p style="clear: both;"></p>';
 	$output_string=ob_get_contents();;
 	ob_end_clean();
