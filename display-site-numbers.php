@@ -192,14 +192,15 @@ function DSN_css(){
 
 /*************** Dress the rows ****************/
 
-	function DSN_dressit($item, $count) {
-		echo "
-	  <div class='DSN-wrapper-cell'>
-	    <table class='DSN-wrapper-table'>
-	      <tr><td><div class='DSN-wrapper-label'>$item: </div></td></tr>
-	      <tr><td><div class='DSN-wrapper-count'>$count</div></td></tr>
-	    </table>
-		</div>";
+/* 'block-style' update made by Chris Nielsen (chris.relaxing@gmail.com) */
+function DSN_dressit($item, $count) {
+	echo "
+  <div class='DSN-wrapper-cell'>
+	<table class='DSN-wrapper-table'>
+	  <tr><td><div class='DSN-wrapper-label'>$item: </div></td></tr>
+	  <tr><td><div class='DSN-wrapper-count'>$count</div></td></tr>
+	</table>
+	</div>";
 }
 
 /*************************************************/
