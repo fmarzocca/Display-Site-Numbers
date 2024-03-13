@@ -3,14 +3,14 @@
   Plugin Name: Display Site Numbers
   Plugin URI: https://github.com/fmarzocca/display-site-numbers
   Description: A widget to display all relevant site content numbers
-  Version: 1.0
+  Version: 1.1
   Author: Fabio Marzocca
   Author URI: http://www.marzocca.net
   Text Domain:   display-site-numbers
     Domain Path:   /languages/
   License: GPL2
 
-  Copyright 2015  by Fabio Marzocca  (email : marzoccafabio@gmail.com)
+  Copyright 2015-2024  by Fabio Marzocca  (email : marzoccafabio@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
